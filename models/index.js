@@ -18,18 +18,18 @@ async function seed () {
         name: 'John',
         surname: 'Smith',
         email: 'johnsmith@fake.com',
-        fav_genre: 'action'
+        fav_genre: 'Action'
     })
 
     await User.create({
         name: 'Jennifer',
         surname: 'Lopez',
         email: 'jenny@fake.com',
-        fav_genre: 'romantic'
+        fav_genre: 'Romantic'
     })
 
     await Show.create({
-        name: 'Avenger Assemble',
+        name: 'Avengers Assemble',
         genre: 'Action',
         available: true      
     })
@@ -38,6 +38,18 @@ async function seed () {
         name: 'Persuadion',
         genre: 'Romantic',
         available: false
+    })
+
+    await Show.create({
+        name: 'Tenet',
+        genre: 'Action',
+        available: true
+    })
+
+    await Show.create({
+        name: 'Avatar',
+        genre: 'Sci Fi',
+        available: true
     })
 
     await logAllTables(db) //Comment out this line to preven logging to the console

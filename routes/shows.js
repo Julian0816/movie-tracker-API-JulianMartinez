@@ -30,6 +30,15 @@ router.get("/:id", async (req, res) => {
     res.send(data)
 })
 
+//GET ===> Not working yet
+router.get("/genre/:genre", async (req, res) => {
+    //Get show of a specific genre
+    const data = await Show.findAll({where: {genre: req.params.genre}})
+    //send data
+    res.send(data)
+})
+
+//PUT
 router.put("/:id", async (req, res) => {
     console.log(req.body)
     //updating show status
@@ -37,9 +46,7 @@ router.put("/:id", async (req, res) => {
     await foundShow.update({available: req.body.available})
     //send something back
     await logTable(Show)
-    res.sendStatus(200)
-    
-
+    res.sendStatus(200)    
 })
 
 //DELETE
