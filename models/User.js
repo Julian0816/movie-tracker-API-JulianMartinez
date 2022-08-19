@@ -1,21 +1,27 @@
 const db = require('../db');
 const {DataTypes} = require('sequelize');
 
-const Show = db.define('Show', {
+const User = db.define('User', {
     //The id will be auto_incremental
 
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    genre: {
+    surname: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    rating: {
+    email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isEmail: true
+        }
+    },
+    fav_genre: {
+        type: DataTypes.STRING
     }
 })
 
-module.exports = Show
+module.exports = User

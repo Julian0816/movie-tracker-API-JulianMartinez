@@ -1,6 +1,10 @@
 const db = require('../db');
-const Show = require('./shows');
-const User = require('./users')
+const Show = require('./Show');
+const User = require('./User')
+const {logAllTables} = require('sequelize-logger')
+//Tables relationships //Best to keep here.
+Show.belongsToMany(User, {through: 'user_show'}) //many to many
+User.belongsToMany(Show, {through: 'user_show'}) //many to many
 
 //Async funtion to add some fake data
 async function seed () {
@@ -13,32 +17,30 @@ async function seed () {
         name: 'John',
         surname: 'Smith',
         email: 'johnsmith@fake.com',
-        fav_genre: 'action',
-        shows_wateched: 'Mission Impossible',
-        password: '103693'
+        fav_genre: 'action'
     })
 
     await User.create({
         name: 'Jennifer',
         surname: 'Lopez',
         email: 'jenny@fake.com',
-        fav_genre: 'romantic',
-        shows_wateched: 'Cheese love',
-        password: '396103'
+        fav_genre: 'romantic'
     })
 
     await Show.create({
-        name: 'Avenger Asseble',
+        name: 'Avenger Assemble',
         genre: 'Action',
-        rating: '5'
+        available: true      
     })
 
     await Show.create({
         name: 'Persuadion',
         genre: 'Romantic',
-        rating: '1'
+        available: false
     })
+
+    await logAllTables(db) //Comment out this line to preven logging to the console
 
 }
 
-module.exports = {Show, User}
+module.exports = {Show, User, seed}

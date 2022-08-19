@@ -12,9 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "express-logger": "^0.0.3",
     "express-validator": "^6.14.2",
     "sequelize": "^6.21.4",
+    "sequelize-logger": "^1.0.0",
     "sqlite3": "^5.0.11"
   },
   "devDependencies": {
