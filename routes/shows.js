@@ -3,18 +3,21 @@ const { logTable, logAllTables } = require('sequelize-logger');
 const { Show } = require('../models');
 const router = express.Router();
 
+//GET
 router.get("/", (req, res) => {
     //Validating router
     console.log("===> showRouter is up and working properly <===")
     res.sendStatus(200)
 })
 
+//GET
 router.get("/all", async (req, res) => {
     //Getting all the Shows
     const data = await Show.findAll()
     res.send(data)
 })
 
+//GET
 router.get("/:id", async (req, res) => {
     //Finding a show by the id
     const data = await Show.findByPk(req.params.id)
@@ -27,7 +30,20 @@ router.get("/:id", async (req, res) => {
     res.send(data)
 })
 
-router.delete("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
+    console.log(req.body)
+    //updating show status
+    let foundShow = await Show.findByPk(req.body.id)
+    await foundShow.update({available: req.body.available})
+    //send something back
+    await logTable(Show)
+    res.sendStatus(200)
+    
+
+})
+
+//DELETE
+router.delete("/", async (req, res) => {
     //Deleting one show by the id
     const deleted = await Show.destroy({
         where: {id: req.params.id}

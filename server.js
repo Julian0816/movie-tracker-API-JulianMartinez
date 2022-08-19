@@ -15,7 +15,7 @@ async function serve (port) {
     await seed()
 
     app.listen(port, () =>{
-        console.log(`App listening on port ${port}`);
+        console.log(`App listening on port ${port} --> http://localhost:3000`);
     })
 }
 
