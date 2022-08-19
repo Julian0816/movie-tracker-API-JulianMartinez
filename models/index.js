@@ -2,6 +2,7 @@ const db = require('../db');
 const Show = require('./Show');
 const User = require('./User')
 const {logAllTables} = require('sequelize-logger')
+
 //Tables relationships //Best to keep here.
 Show.belongsToMany(User, {through: 'user_show'}) //many to many
 User.belongsToMany(Show, {through: 'user_show'}) //many to many
