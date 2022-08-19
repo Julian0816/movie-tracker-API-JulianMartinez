@@ -18,6 +18,13 @@ router.get("/all", async (req, res) => {
 })
 
 //GET
+router.get("/rating/:rating", async (req, res) => {
+    //Get all the show ratings
+    const data = await Show.findAll({where: {rating: req.params.rating}})
+    res.send(data)
+})
+
+//GET
 router.get("/:id", async (req, res) => {
     //Finding a show by the id
     const data = await Show.findByPk(req.params.id)
@@ -30,7 +37,7 @@ router.get("/:id", async (req, res) => {
     res.send(data)
 })
 
-//GET ===> Not working yet
+//GET
 router.get("/genre/:genre", async (req, res) => {
     //Get show of a specific genre
     const data = await Show.findAll({where: {genre: req.params.genre}})

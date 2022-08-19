@@ -31,39 +31,45 @@ async function seed () {
     const show1 = await Show.create({
         name: 'Avengers Assemble',
         genre: 'Action',
+        rating: 5,
         available: true      
     })
 
     const show2 = await Show.create({
         name: 'Persuadion',
         genre: 'Romantic',
+        rating: 1,
         available: false
     })
 
     await Show.create({
         name: 'Tenet',
         genre: 'Action',
+        rating: 3,
         available: true
     })
 
     await Show.create({
         name: 'Avatar',
         genre: 'SciFi',
+        rating: 5,
         available: true
     })
 
     await Show.create({
         name: 'Warcraft',
         genre: 'SciFi',
+        rating: 4,
         available: true
     })
 
     await Show.create({
         name: 'Man Of Steel',
         genre: 'SciFi',
+        rating: 5,
         available: true
     })
-    
+
     await john.addShow(show1)
     await john.addShow(show2)
 
