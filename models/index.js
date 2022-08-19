@@ -14,7 +14,7 @@ async function seed () {
     await db.sync({force: true})
 
     //Some fake data
-    await User.create({
+    const john = await User.create({
         name: 'John',
         surname: 'Smith',
         email: 'johnsmith@fake.com',
@@ -28,13 +28,13 @@ async function seed () {
         fav_genre: 'Romantic'
     })
 
-    await Show.create({
+    const show1 = await Show.create({
         name: 'Avengers Assemble',
         genre: 'Action',
         available: true      
     })
 
-    await Show.create({
+    const show2 = await Show.create({
         name: 'Persuadion',
         genre: 'Romantic',
         available: false
@@ -48,9 +48,24 @@ async function seed () {
 
     await Show.create({
         name: 'Avatar',
-        genre: 'Sci Fi',
+        genre: 'SciFi',
         available: true
     })
+
+    await Show.create({
+        name: 'Warcraft',
+        genre: 'SciFi',
+        available: true
+    })
+
+    await Show.create({
+        name: 'Man Of Steel',
+        genre: 'SciFi',
+        available: true
+    })
+    
+    await john.addShow(show1)
+    await john.addShow(show2)
 
     await logAllTables(db) //Comment out this line to preven logging to the console
 
